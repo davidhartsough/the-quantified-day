@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/stylesheets/app.css" />
+    <script src="/static/jquery-1.11.2.min.js"></script>
+    <script src="/static/bower_components/modernizr/modernizr.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">{{ title }}</h1>
+        <h3 class="text-center js-header">Have you been through here once before?</h3>
+        <div class="first-shown">
+            <div class="tabs-container">
+                <ul class="tabs" data-tab>
+                    <li class="tab-title active"><a href="#nope">Nah man</a></li>
+                    <li class="tab-title"><a href="#yup">Oh yeah</a></li>
+                </ul>
+            </div>
+
+            <div class="tabs-content">
+                <div class="content active" id="nope">
+                    <h3 class="text-center">Then let's create a visual representation of your average day through quantitative data!</h3>
+                    <label>But first let's get one bit of qualitative data:
+                    <input type="text" placeholder="Your Name" id="username"/></label>
+                    <h4>Now let's get some numbers:</h4>
+                    <p class="dont-panic">Don't worry about being exact. By all means, <strong>just guess.</strong> Approximations are fine.</p>
+                    <h3>On an average day, how much time do spend...</h3>
+                    <p id="select-label">Hours | Minutes</p>
+                    <div class="item"><select id="sleeping-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="sleeping-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Sleeping?</p></div>
+                    <div class="item"><select id="showering-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="showering-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Showering?</p></div>
+                    <div class="item"><select id="grooming-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="grooming-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>General hygiene-ing? (Grooming?) (brushing teeth, hair, cats, etc.)</p></div>
+                    <div class="item"><select id="peeing-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="peeing-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Utilizing the restroom?</p></div>
+                    <div class="item"><select id="cooking-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="cooking-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Cooking?</p></div>
+                    <div class="item"><select id="eating-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="eating-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Eating? (breakfast, snack, lunch, snack, dinner, snack, and snacks)</p></div>
+                    <div class="item"><select id="driving-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="driving-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Driving? (stoplights? yeah, I'm not a fan either..)</p></div>
+                    <div class="item"><select id="walking-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="walking-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Walking?</p></div>
+                    <div class="item"><select id="biking-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="biking-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Biking?</p></div>
+                    <div class="item"><select id="riding-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="riding-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Riding public transportation?</p></div>
+                    <div class="item"><select id="chatting-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="chatting-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Chatting with peeps in person? (socializing)</p></div>
+                    <div class="item"><select id="emailing-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="emailing-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Emailing?</p></div>
+                    <div class="item"><select id="texting-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="texting-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Texting?</p></div>
+                    <div class="item"><select id="calling-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="calling-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>In phone calls?</p></div>
+                    <div class="item"><select id="gaming-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="gaming-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Playing games?</p></div>
+                    <div class="item"><select id="socialmedia-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="socialmedia-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Social media-ing? (InstaTwitFace stuff)</p></div>
+                    <div class="item"><select id="browsing-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="browsing-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>General web browsing? (reddit, YouTube, image boards)</p></div>
+                    <div class="item"><select id="reading-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="reading-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Reading? (if you want, this can be "offline reading")</p></div>
+                    <div class="item"><select id="meetings-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="meetings-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>In meetings?</p></div>
+                    <div class="item"><select id="working-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="working-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Actually working?</p></div>
+                    <div class="item"><select id="inclass-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="inclass-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Being attentive in class? (legit listening to them lechures)</p></div>
+                    <div class="item"><select id="tv-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="tv-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Watching TV? (or movies or Netflix or whatever)</p></div>
+                    <div class="item"><select id="household-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="household-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Doing household chores/cleaning?</p></div>
+                    <div class="item"><select id="exercising-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="exercising-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Exercising/sports-ing?</p></div>
+                    <div class="item"><select id="hobby-hr"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option></select><select id="hobby-min"><option>0</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><p>Doing favorite hobbies/activities?</p></div>
+
+                    <div class="errors">
+                        <h3>Wait a second there bub!</h3>
+                        <p>Ya gotta go back and double check this stuff:</p>
+                        <ul class="fix-me">
+                        </ul>
+                    </div>
+
+                    <button class="js-submit-day right">Submit</button>
+                </div>
+
+                <div class="content" id="yup">
+                    <h3 class="text-center">That makes you way cooler!</h3>
+                    <h4 class="oops">Oops! Try again there pal.</h4>
+                    <label>Just re-enter your name and let's get cookin':</label>
+                    <div class="row collapse">
+                        <div class="small-10 columns">
+                            <input type="text" placeholder="Your Name" id="login">
+                        </div>
+                        <div class="small-2 columns">
+                            <button class="button postfix js-sign-in">Let's go!</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- tab content -->
+        </div><!-- first shown -->
+
+        <div class="second-shown text-center">
+            <div id="canvas-holder">
+                <canvas id="chart-area" style="width: 600px; height: 500px;" width="600" height="500" />
+            </div>
+            <button class="back-button">Back</button>
+        </div>
+    </div>
+
+    <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation.min.js"></script>
+    <script src="/static/bower_components/Chart.js/Chart.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(document).foundation();
+            $('.errors').hide();
+            $('.oops').hide();
+            $('.second-shown').hide();
+
+            $('.back-button').click(function() {
+                $('#chart-area').remove();
+                $('.second-shown').hide();
+                $('.first-shown').show();
+            });
+            $('.js-sign-in').click(function() {
+                var login = $("#login").val();
+                if (login != "") {
+                    $.get('/api/v1/average-day/' + login, function(resp) {
+                        if (resp != null) {
+                            $('.fix-me').empty();
+                            $('.oops').hide();
+                            $('.errors').hide();
+                            $('.first-shown').hide();
+                            $('.second-shown').show();
+                            $('#chart-area').remove();
+                            $('#canvas-holder').append('<canvas id="chart-area" style="width: 600px; height: 500px;" width="600" height="500" />');
+                            $('.js-header').text(resp.username + "\'s Average Day");
+
+                            var sleeping, showering, grooming, peeing, cooking, eating, driving, walking, biking, riding, chatting, emailing, texting, calling, gaming, socialmedia, browsing, reading, meetings, working, inclass, tv, household, exercising, hobby, totalTime, extraTime = 0;
+
+                            sleeping = 1*parseInt(resp.sleeping)*1;
+                            showering = 1*parseInt(resp.showering)*1;
+                            grooming = 1*parseInt(resp.grooming)*1;
+                            peeing = 1*parseInt(resp.peeing)*1;
+                            cooking = 1*parseInt(resp.cooking)*1;
+                            eating = 1*parseInt(resp.eating)*1;
+                            driving = 1*parseInt(resp.driving)*1;
+                            walking = 1*parseInt(resp.walking)*1;
+                            biking = 1*parseInt(resp.biking)*1;
+                            riding = 1*parseInt(resp.riding)*1;
+                            chatting = 1*parseInt(resp.chatting)*1;
+                            emailing = 1*parseInt(resp.emailing)*1;
+                            texting = 1*parseInt(resp.texting)*1;
+                            calling = 1*parseInt(resp.calling)*1;
+                            gaming = 1*parseInt(resp.gaming)*1;
+                            socialmedia = 1*parseInt(resp.socialmedia)*1;
+                            browsing = 1*parseInt(resp.browsing)*1;
+                            reading = 1*parseInt(resp.reading)*1;
+                            meetings = 1*parseInt(resp.meetings)*1;
+                            working = 1*parseInt(resp.working)*1;
+                            inclass = 1*parseInt(resp.inclass)*1;
+                            tv = 1*parseInt(resp.tv)*1;
+                            household = 1*parseInt(resp.household)*1;
+                            exercising = 1*parseInt(resp.exercising)*1;
+                            hobby = 1*parseInt(resp.hobby)*1;
+                            extraTime = 1*parseInt(resp.extra)*1;
+
+                            var pieData = [
+                                {
+                                    value: 1*sleeping,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Sleeping"
+                                },
+                                {
+                                    value: 1*showering,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Showering"
+                                },
+                                {
+                                    value: 1*grooming,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Grooming"
+                                },
+                                {
+                                    value: 1*peeing,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Restroom-ing"
+                                },
+                                {
+                                    value: 1*cooking,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Cooking"
+                                },
+                                {
+                                    value: 1*eating,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Eating"
+                                },
+                                {
+                                    value: 1*driving,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Driving"
+                                },
+                                {
+                                    value: 1*walking,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Walking"
+                                },
+                                {
+                                    value: 1*biking,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Biking"
+                                },
+                                {
+                                    value: 1*riding,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Riding"
+                                },
+                                {
+                                    value: 1*chatting,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Chatting"
+                                },
+                                {
+                                    value: 1*emailing,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Emailing"
+                                },
+                                {
+                                    value: 1*texting,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Texting"
+                                },
+                                {
+                                    value: 1*calling,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Calling"
+                                },
+                                {
+                                    value: 1*gaming,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Gaming"
+                                },
+                                {
+                                    value: 1*socialmedia,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Social Media"
+                                },
+                                {
+                                    value: 1*browsing,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Web Browsing"
+                                },
+                                {
+                                    value: 1*reading,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Reading"
+                                },
+                                {
+                                    value: 1*meetings,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "In Meetings"
+                                },
+                                {
+                                    value: 1*working,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Working"
+                                },
+                                {
+                                    value: 1*inclass,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "In Classes"
+                                },
+                                {
+                                    value: 1*tv,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Watching TV"
+                                },
+                                {
+                                    value: 1*household,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Household Chores"
+                                },
+                                {
+                                    value: 1*exercising,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Exercising"
+                                },
+                                {
+                                    value: 1*hobby,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "Hobby-ing"
+                                },
+                                {
+                                    value: 1*extraTime,
+                                    color:"#008CBA",
+                                    highlight: "#007095",
+                                    label: "EXTRA TIME!"
+                                }
+                            ];
+                            var ctx = document.getElementById("chart-area").getContext("2d");
+                            window.myPie = new Chart(ctx).Pie(pieData);
+                        } else {
+                            $('.oops').show();
+                        }
+                    });
+                } else {
+                    $('.oops').show();
+                }
+            });
+
+            $('.js-submit-day').click(function() {
+                var username = $('#username').val();
+                var sleeping = (parseInt($('#sleeping-hr').val()) * 60) + parseInt($('#sleeping-min').val());
+                var showering = (parseInt($('#showering-hr').val()) * 60) + parseInt($('#showering-min').val());
+                var grooming = (parseInt($('#grooming-hr').val()) * 60) + parseInt($('#grooming-min').val());
+                var peeing = (parseInt($('#peeing-hr').val()) * 60) + parseInt($('#peeing-min').val());
+                var cooking = (parseInt($('#cooking-hr').val()) * 60) + parseInt($('#cooking-min').val());
+                var eating = (parseInt($('#eating-hr').val()) * 60) + parseInt($('#eating-min').val());
+                var driving = (parseInt($('#driving-hr').val()) * 60) + parseInt($('#driving-min').val());
+                var walking = (parseInt($('#walking-hr').val()) * 60) + parseInt($('#walking-min').val());
+                var biking = (parseInt($('#biking-hr').val()) * 60) + parseInt($('#biking-min').val());
+                var riding = (parseInt($('#riding-hr').val()) * 60) + parseInt($('#riding-min').val());
+                var chatting = (parseInt($('#chatting-hr').val()) * 60) + parseInt($('#chatting-min').val());
+                var emailing = (parseInt($('#emailing-hr').val()) * 60) + parseInt($('#emailing-min').val());
+                var texting = (parseInt($('#texting-hr').val()) * 60) + parseInt($('#texting-min').val());
+                var calling = (parseInt($('#calling-hr').val()) * 60) + parseInt($('#calling-min').val());
+                var gaming = (parseInt($('#gaming-hr').val()) * 60) + parseInt($('#gaming-min').val());
+                var socialmedia = (parseInt($('#socialmedia-hr').val()) * 60) + parseInt($('#socialmedia-min').val());
+                var browsing = (parseInt($('#browsing-hr').val()) * 60) + parseInt($('#browsing-min').val());
+                var reading = (parseInt($('#reading-hr').val()) * 60) + parseInt($('#reading-min').val());
+                var meetings = (parseInt($('#meetings-hr').val()) * 60) + parseInt($('#meetings-min').val());
+                var working = (parseInt($('#working-hr').val()) * 60) + parseInt($('#working-min').val());
+                var inclass = (parseInt($('#inclass-hr').val()) * 60) + parseInt($('#inclass-min').val());
+                var tv = (parseInt($('#tv-hr').val()) * 60) + parseInt($('#tv-min').val());
+                var household = (parseInt($('#household-hr').val()) * 60) + parseInt($('#household-min').val());
+                var exercising = (parseInt($('#exercising-hr').val()) * 60) + parseInt($('#exercising-min').val());
+                var hobby = (parseInt($('#hobby-hr').val()) * 60) + parseInt($('#hobby-min').val());
+                var totalTime = sleeping + showering + grooming + peeing + cooking + eating + driving + walking + biking + riding + chatting + emailing + texting + calling + gaming + socialmedia + browsing + reading + meetings + working + inclass + tv + household + exercising + hobby;
+                var extraTime = (24*60) - totalTime; // 1440
+        
+                if ((username != "") && (totalTime < (24*60))) {
+                    $('.fix-me').empty();
+                    $('.oops').hide();
+                    $('.errors').hide();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/v1/average-day',
+                        data: {
+                                username: username,
+                                sleeping: sleeping,
+                                showering: showering,
+                                grooming: grooming,
+                                peeing: peeing,
+                                cooking: cooking,
+                                eating: eating,
+                                driving: driving,
+                                walking: walking,
+                                biking: biking,
+                                riding: riding,
+                                chatting: chatting,
+                                emailing: emailing,
+                                texting: texting,
+                                calling: calling,
+                                gaming: gaming,
+                                socialmedia: socialmedia,
+                                browsing: browsing,
+                                reading: reading,
+                                meetings: meetings,
+                                working: working,
+                                inclass: inclass,
+                                tv: tv,
+                                household: household,
+                                exercising: exercising,
+                                hobby: hobby,
+                                extra: extraTime
+                        },
+                        dataType: 'json',
+                        success: function(resp) {
+                            console.log("that json done been posted! like: " + resp.username);
+                        },
+                    });
+
+                    $('.first-shown').hide();
+                    $('.second-shown').show();
+                    $('#chart-area').remove();
+                    $('#canvas-holder').append('<canvas id="chart-area" style="width: 600px; height: 500px;" width="600" height="500" />');
+                    $('.js-header').text(username + '\'s Average Day');
+                    var newPieData = [
+                        {
+                            value: 1*sleeping,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Sleeping"
+                        },
+                        {
+                            value: 1*showering,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Showering"
+                        },
+                        {
+                            value: 1*grooming,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Grooming"
+                        },
+                        {
+                            value: 1*peeing,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Restroom-ing"
+                        },
+                        {
+                            value: 1*cooking,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Cooking"
+                        },
+                        {
+                            value: 1*eating,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Eating"
+                        },
+                        {
+                            value: 1*driving,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Driving"
+                        },
+                        {
+                            value: 1*walking,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Walking"
+                        },
+                        {
+                            value: 1*biking,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Biking"
+                        },
+                        {
+                            value: 1*riding,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Riding"
+                        },
+                        {
+                            value: 1*chatting,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Chatting"
+                        },
+                        {
+                            value: 1*emailing,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Emailing"
+                        },
+                        {
+                            value: 1*texting,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Texting"
+                        },
+                        {
+                            value: 1*calling,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Calling"
+                        },
+                        {
+                            value: 1*gaming,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Gaming"
+                        },
+                        {
+                            value: 1*socialmedia,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Social Media"
+                        },
+                        {
+                            value: 1*browsing,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Web Browsing"
+                        },
+                        {
+                            value: 1*reading,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Reading"
+                        },
+                        {
+                            value: 1*meetings,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "In Meetings"
+                        },
+                        {
+                            value: 1*working,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Working"
+                        },
+                        {
+                            value: 1*inclass,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "In Classes"
+                        },
+                        {
+                            value: 1*tv,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Watching TV"
+                        },
+                        {
+                            value: 1*household,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Household Chores"
+                        },
+                        {
+                            value: 1*exercising,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Exercising"
+                        },
+                        {
+                            value: 1*hobby,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "Hobby-ing"
+                        },
+                        {
+                            value: 1*extraTime,
+                            color:"#008CBA",
+                            highlight: "#007095",
+                            label: "EXTRA TIME!"
+                        }
+                    ];
+                    var ctx = document.getElementById("chart-area").getContext("2d");
+                    window.myPie = new Chart(ctx).Pie(newPieData);
+
+                } else {
+                    $('.errors').show();
+                    if (username == "") {
+                        $('.fix-me').append($('<li />').text("Add your name at the top, silly."));
+                    }
+                    if (totalTime > (24*60)) {
+                        $('.fix-me').append($('<li />').text("You have more than 24 hours of time here, ya goof."));
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
